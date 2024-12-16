@@ -1,6 +1,7 @@
 import pickle
 import streamlit as st
 import requests
+from st_clickable_images import clickable_images
 
 def fetch_poster(movie_id):
     url = "https://api.themoviedb.org/3/movie/{}?api_key=8265bd1679663a7ea12ac168da84d2e8&language=en-US".format(movie_id)
@@ -54,6 +55,18 @@ if st.button('Show Recommendation'):
     st.text(recommended_movie_names[4])
     st.image(recommended_movie_posters[4])
 
+clicked = clickable_images(
+    [
+        "https://www.adgully.com/img/800/202406/pushpa22.png.jpg",
+        "https://www.adgully.com/img/800/202407/to.png.jpg",
+        "https://www.adgully.com/img/800/202309/myntra.png.jpg?w=700",
+        "https://bsscommerce.com/shopify/wp-content/uploads/2023/10/change-shopify-url.png?w=700",
+        "https://www.adgully.com/img/800/202207/demand-360.png.jpg"
+    ],
+    titles=[f"Image #{str(i)}" for i in range(5)],
+    div_style={"display": "flex", "justify-content": "center", "flex-wrap": "wrap"},
+    img_style={"margin": "5px", "height": "200px"},
+)
 
-
+#st.markdown(f"Image #{clicked} clicked" if clicked > -1 else "No image clicked")
 
